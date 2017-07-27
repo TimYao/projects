@@ -1,0 +1,163 @@
+<% if(viewmessages.view=='index') { %>
+	<div class="main-content col08"> 
+	   <div class="row"> 
+	      <% if(viewmessages.contents && viewmessages.contents['recommid_msg']) { %>
+	          <div class="col04 offleft"> 
+	               <% for(var a=0,l=viewmessages.contents['recommid_msg'].length;a<l-2;a++) { %>
+                      <article> 
+		                  <div class="heading"> 
+				             <img src="/static/images/thumb1.jpg" /> 
+				             <h2>
+				             	<a href="#"><%= viewmessages.contents['recommid_msg'][a]['title'] %></a>
+				             </h2> 
+				          </div>
+				          <div class="content"> 
+				             <p><%= viewmessages.contents['recommid_msg'][a]['content'] %></p> 
+				          </div> 
+				          <div class="footer"> 
+				             <p class="more">
+				             	<a href="#">Read more &gt;&gt;</a>
+				             </p> 
+				          </div>  
+	                </article> 
+	               <% } %>
+	          </div> 
+	          <div class="col04 offright">
+                  <% for(var a=2,l=viewmessages.contents['recommid_msg'].length;a<l;a++) { %>
+	                <article>
+		                  <div class="heading"> 
+				             <img src="/static/images/thumb3.jpg" /> 
+				             <h2><a href="#"><%= viewmessages.contents['recommid_msg'][a]['title'] %></a></h2> 
+				          </div>
+				          <div class="content"> 
+				             <p><%= viewmessages.contents['recommid_msg'][a]['content'] %></p> 
+				          </div> 
+				          <div class="footer"> 
+				             <p class="more"><a href="#">Read more &gt;&gt;</a></p> 
+				          </div> 
+	                </article>   
+		          <% } %>
+	          </div>    
+	      <% } %> 
+	   </div> 
+	</div> 
+	<div class="sidebar col05 offall" style="float:right;">
+	     <!--文章分类--> 
+		 <% if(viewmessages.contents && viewmessages.contents['categories']) { %>
+		     <section> 
+				  <div class="heading">
+				     Categories
+				  </div> 
+				  <div class="content"> 
+				     <ul class="list">
+				          <% for(var a=l=0,l=viewmessages.contents['categories'].length;a<l;a++) { %>
+				              <li><a href=""><%= viewmessages.contents['categories'][a]['title'] %></a></li> 
+				          <% } %> 
+				     </ul> 
+				  </div> 
+		     </section> 
+		 <% } %>
+		 <!--文章分类end-->
+		 <!--友情链接-->
+		  <% if(viewmessages.contents && viewmessages.contents['links']) { %>
+		    <section> 
+		        <div class="heading">
+		           Links List
+		        </div> 
+		        <div class="content"> 
+			         <ul class="list"> 
+			            <% for(var a=0;a<viewmessages.contents['links'].length;a++) { %>
+				          <li><a href="#"><%= viewmessages.contents['links'][a]['title'] %></a></li> 
+				        <% } %> 
+			         </ul> 
+		        </div> 
+		    </section> 
+		  <% } %> 
+		 <!--友情链接end-->
+	</div>
+	
+	<div class="sidebar col03 offall" style="float:right;"> 
+	  <!--关于我们-->
+	  <% if(viewmessages.contents && viewmessages.contents['about_msg']) { %>
+	    <section> 
+	        <div class="heading">
+	           About us
+	        </div> 
+	        <% for(var a=0;a<viewmessages.contents['about_msg'].length;a++) { %>
+		        <div class="content">
+		           <%=viewmessages.contents['about_msg'][a].content %>
+                   <br/>   
+		           <a href="">detail >><a>
+		        </div> 
+	        <% } %>
+	    </section>
+	  <% } %>
+	  <!--关于我们 end--> 
+
+	  <!--活动-->
+	  <% if(viewmessages.contents && viewmessages.contents['ydates']) { %>
+	    <section> 
+	        <div class="heading">
+	             Archives
+	        </div> 
+	        <div class="content"> 
+		         <ul class="list"> 
+		              <%#= viewmessages.contents['ydates']['2015'] %>
+			          <% for(var a in viewmessages.contents['ydates']) { %>
+			              <% for(var b in viewmessages.contents['ydates'][a]) { %>     
+			                    <li>
+			                       <a href="#">
+			                          <%= b %>
+			                          <%= a %>
+			                       </a>
+			                   </li> 
+		                  <% } %>   
+			          <% } %> 
+		         </ul> 
+	        </div> 
+	    </section> 
+	  <% } %> 
+	  <!--活动end-->
+	</div>
+
+	<div class="clear"></div>
+
+	<div class="sidebar offall popularpost">
+         <!--<section> 
+			  <div class="heading">
+			   Links List
+			  </div> 
+			  <div class="content"> 
+			   <ul class="list"> 
+			      <li><a href="#">Free html5 templates</a></li> 
+			      <li><a href="#">Free css3 menus</a></li> 
+			      <li><a href="#">Free responsive html5 themes</a></li> 
+			      <li><a href="#">Free onepage html5 themes</a></li> 
+			      <li><a href="#">Free animated html5 themes</a></li> 
+			    </ul> 
+			  </div> 
+		 </section>--> 
+		 <!--热门帖子展示-->
+		 <% if(viewmessages.contents && viewmessages.contents['hotposts']) { %>
+		 <section class="clearfix populcontent"> 
+			  <div class="heading clearfix">
+			      <span class="title">Popular Post</span>
+			      <a href="" class="most">Most > </a>
+			  </div> 
+			  <div class="content"> 
+			     <% for(var a=l=0,l=viewmessages.contents['hotposts'].length;a<l;a++) { %> 
+			        <section>
+		               <img src="/static/images/thumb5.jpg" /> 
+		               <h4><a href="#"><%= viewmessages.contents['hotposts'][a]['title'] %></a></h4> 
+		               <p><%= viewmessages.contents['hotposts'][a]['content'] %></p>
+		               <p class="date"><%= new Date(viewmessages.contents['hotposts'][a]['date']).toLocaleString() %></p> 
+			        </section>
+			      <% } %> 
+			  </div> 
+		 </section>
+		 <!--热门帖子展示end-->
+		 <% } %>   
+	</div>
+<% } %>
+
+

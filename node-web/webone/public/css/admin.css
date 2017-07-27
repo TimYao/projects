@@ -1,0 +1,331 @@
+body
+{
+	margin:0;
+	padding:0;
+	font-family:'Microsoft YaHei' 'SimSun';
+	-ms-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	background:#E2E2E2;
+}
+ul,ol,li
+{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+em,i,strong,b
+{
+	font-style:normal;
+}
+a
+{
+	text-decoration:none;
+}
+img
+{
+	border:none;
+}
+input[type=text]{
+	padding:0 5px;
+}
+input.disabledcss
+{
+	border:0;
+	background:#E2E2E2;
+}
+.blue
+{
+	color:#628DB0;
+}
+.red
+{
+	color:red;
+}
+
+.bodys
+{
+	background-color:#375276;
+	width:100%;
+	height:100%; 
+}
+.ltitle
+{
+	color:#E4DADA;
+	font-size:25px;
+	text-align:center;
+	padding:270px 0 100px 0;
+}
+.adminlogin
+{
+	width:400px;
+	margin:0 auto;
+	color:#E4DADA;
+}
+.al
+{
+	margin:14px 0;
+}
+.al label
+{
+	width:100px;
+	display:inline-block;
+	text-align:right;
+}
+.al input[type="text"],.al input[type="password"]
+{
+	height:28px;
+	width:180px;
+	padding:0 5px;
+}
+.al input[type="submit"]
+{
+	color:#E4DADA;
+	border:none;
+	background:#5F738C;
+	padding:5px 15px;
+	font-size:14px;
+	margin-left:105px;
+	margin-top:18px;
+}
+.al input[type="submit"]:hover
+{
+	background:#4F79AD;
+}
+/*page*/
+.pages{padding:50px 0 20px 0;margin-left:190px;}
+.pages a{color:#292929;font-size:16px;display:inline-block;margin:0 10px;}
+.pages a:hover{color:#006699;text-decoration:underline;}
+.pages .cur{color:#006699;}
+.adtop
+{
+	background:#1B262F;
+	height:150px;
+	padding:0 25px;
+	position:relative;
+	border-bottom:1px solid #165181;
+}
+.adtitle
+{
+	color:#fff;
+	font-size:30px;
+	line-height:140px;
+	display:block;
+}
+.adtext
+{
+	position:absolute;
+	right:35px;
+	bottom:0;
+	color:#fff;
+	font-size:14px;
+}
+.adtext a
+{
+	color:#EEEFF0;
+	display:inline-block;
+	margin:0 5px;
+}
+.adtext a:hover
+{
+	text-decoration:underline;
+	color:#fff;
+}
+.adleft
+{
+	float:left;
+	background:#C1D5E5;
+	padding:20px 20px;
+	min-width:200px;
+}
+.adright
+{
+	float:left;
+	padding:20px;
+}
+.mainManagement
+{
+	margin:0;
+	padding:0;
+}
+.mainManagement > li
+{
+	position:relative;
+	margin-bottom:30px;
+}
+.mainManagement > li .add
+{
+	position:absolute;
+	right:0;
+	top:-6px;
+	color:#fff;
+	font-size:24px;
+	font-weight:bold;
+}
+.mainManagement li > a
+{
+	color:#3E81B8;
+	font-weight:bold;
+	font-size:16px;
+}
+.mainManagement ul
+{
+	display:none;
+}
+.listul
+{
+	margin:10px 10px;
+	position:relative;
+}
+.listul li
+{
+	padding:5px 0;
+	position:relative;
+}
+.mainManagement > li .listul .add
+{
+	right:80px;
+	top:2px;
+}
+.listul li a
+{
+    font-weight:normal;
+    font-size:14px;
+}
+.listul li .root
+{
+	font-weight:bold;
+	color:#0A5694;
+}
+
+/*tables*/
+.pinfors
+{
+	padding-left:200px;
+	margin:40px 0;
+}
+.listables
+{
+	margin-left:200px;
+	border-right:1px solid #628DB0;
+	border-bottom:1px solid #628DB0;
+}
+.listables tr th,.listables tr td
+{
+	padding:15px 15px;
+	color:#131111;
+	text-align:center;
+	border-top:1px solid #628DB0;
+	border-left:1px solid #628DB0;
+}
+.opbtns a
+{
+	color:#628DB0;
+	display: inline-block;
+    margin: 0 5px;
+}
+.opbtns a:hover
+{
+	text-decoration:underline;
+	color:#1562A0;
+}
+.editext
+{
+	padding:10px 0;
+}
+.editext input
+{
+	height:30px;
+	line-height:30px;
+	border:1px solid #628DB0;
+}
+.textareacontent{
+	width:400px;
+	height:250px;
+	resize:none;
+	outline:none;
+	margin-left:-6px;
+	border:1px solid #628DB0;
+	padding:10px;
+}
+.addbtns
+{
+	color:#fff;
+	background-color:#628DB0;
+	display:inline-block;
+	padding:8px 13px;
+	border-radius:3px;
+	margin-left:16px;
+	font-size:12px;
+}
+.listbtn{
+	color:#628DB0;
+	display:inline-block;
+	margin-left:26px;
+}
+.listbtn:hover{
+	color:#0A5694;
+}
+.addbtns:hover{
+	color:#f4f4f4;
+}
+.editext .disabledcss
+{
+	border:0;
+}
+.editext label em
+{
+	display:inline-block;
+	width:150px;
+	text-align:right;
+	margin-right:10px;
+	font-size:16px;
+	vertical-align:top;
+}
+.editsub
+{
+	padding-left:160px;
+	padding-top:10px;
+}
+.editsub input[type="submit"]
+{
+	background-color:#628DB0;
+	border:0;
+	color:#fff;
+	padding:6px 12px;
+	font-size:14px;
+}
+.allselect
+{
+	width:180px;
+	height:30px;
+	margin-left:-5px;
+	border:1px solid #628DB0;
+}
+.addForm
+{
+	padding-left:150px;
+}
+.addForm .pinfors
+{
+	padding-left:100px;
+}
+.editext input[type="radio"]
+{
+	line-height:normal;
+	height:auto;
+	border:0;
+}
+.welcomtext
+{
+	text-align:center;
+	font-size:18px;
+	color:#3E81B8;
+}
+.editext .uptext
+{
+	background-color:#fff; 
+	height:auto;
+	padding:5px;
+	line-height:normal;
+}

@@ -1,0 +1,17 @@
+<% if(viewmessages['view']) { %>
+	<div class="pages">
+	  <% if(viewmessages.contents['pages']['prePage']) { %>
+	    <a href="/<%= viewmessages['view'] %>/index?iclass=<%= (viewmessages.contents['pages']['iclass']=="articles" ? "contents&list=articles" : viewmessages.contents['pages']['iclass']=="categories" ? "contents&list=categories" : viewmessages.contents['pages']['iclass']) %>&page=1" class="hpage">首页</a>
+	    <a href="/<%= viewmessages['view'] %>/index?iclass=<%= (viewmessages.contents['pages']['iclass']=="articles" ? "contents&list=articles" : viewmessages.contents['pages']['iclass']=="categories" ? "contents&list=categories" : viewmessages.contents['pages']['iclass']) %>&page=<%= viewmessages.contents['pages']['preNum'] %>" class="pre">上一页</a>
+	  <% } %> 
+	  <% for(var i=viewmessages.contents['pages']['startn'];i<=viewmessages.contents['pages']['endn'];i++) { %>   
+	    <a href="/<%= viewmessages['view'] %>/index?iclass=<%= (viewmessages.contents['pages']['iclass']=="articles" ? "contents&list=articles" : viewmessages.contents['pages']['iclass']=="categories" ? "contents&list=categories" : viewmessages.contents['pages']['iclass']) %>&page=<%= i %>" class="<% if(i==viewmessages.contents['pages']['curNum']) { %>cur<% }else{ %><% } %>"><%= i %></a>
+	  <% } %>  
+	  <% if(viewmessages.contents['pages']['nextPage']) { %>  
+	    <a href="/<%= viewmessages['view'] %>/index?iclass=<%= (viewmessages.contents['pages']['iclass']=="articles" ? "contents&list=articles" : viewmessages.contents['pages']['iclass']=="categories" ? "contents&list=categories" : viewmessages.contents['pages']['iclass']) %>&page=<%= viewmessages.contents['pages']['nextNum'] %>" class="next">下一页</a>
+	    <a href="/<%= viewmessages['view'] %>/index?iclass=<%= (viewmessages.contents['pages']['iclass']=="articles" ? "contents&list=articles" : viewmessages.contents['pages']['iclass']=="categories" ? "contents&list=categories" : viewmessages.contents['pages']['iclass']) %>&page=<%= viewmessages.contents['pages']['pageNum'] %>" class="lpage">末页</a>
+	  <% } %>  
+	</div>
+<% } %>
+
+ 

@@ -1,0 +1,36 @@
+<header> 
+  <p class="toptions">
+   	 	 <a href="#">login</a>
+   	 	 <a href="#">register</a>
+  </p>
+  <div id="logo">
+    <a href="">
+ 	  <img src="/static/images/logo.png" />
+    </a>
+  </div> 
+  <nav> 
+	 <ul class="menu">
+      <% if(viewmessages.contents && viewmessages.contents['navs']) { %>
+        <% for(var a in viewmessages.contents['navs']) { %>
+          <li>
+            <a target="_blank" href="/blog/<% if(viewmessages.contents['navs'][a]['nid'] ==0) { %>index?a=1<% }else{ %>classific?classid=<%= viewmessages.contents['navs'][a]['nid'] %><% } %>" >
+              <%= viewmessages.contents['navs'][a]['title'] %>
+            </a>
+          </li> 
+	    <% } %>
+      <% } %>
+	 </ul> 
+	 <div class="minimenu">
+	  <div>
+	    MENU1
+	  </div> 
+	  <select> 
+	      <option>Home</option> 
+	      <option>Blog</option> 
+	      <option>Gallery</option>
+	      <option>Contact</option>
+	      <option>About</option>
+	  </select> 
+	 </div> 
+  </nav> 
+</header>

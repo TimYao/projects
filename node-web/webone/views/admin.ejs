@@ -1,0 +1,596 @@
+<link rel="stylesheet" href="/static/css/admin.css" /> 
+<script src="/static/js/lib/jquery.min.js"></script> 
+<script>
+ //后台效果
+ $(function(){
+    setWin();
+    $(document).on('click','.mainManagement li .fl',function(event){
+        !$(this)[0].flg ? ($(this).parent().children('ul').show(),$(this)[0].flg=true) : ($(this).parent().children('ul').hide(),$(this)[0].flg=false);
+        return false;
+    });
+    function setdate(d)
+    {
+       var dates = new Date(d);
+       return dates.toLocalString();
+    }
+    function setWin()
+    {
+       var bodyh = parseFloat($(document).height(),10);
+       var lasth = bodyh -parseFloat($(".adtop").height(),10);
+       $(".adleft").height(lasth);
+    }
+    //加密解密管理员密码
+    $(".showpwd").on('click',function(event){
+        var nid = $(this).attr("data-id");
+        var isDecry = $(this).hasClass('jmsucess') ? false : true;
+        $.ajax({
+           url:'/admin/index?options=showpwd',
+           type:'get',
+           async:true,
+           data:{
+              iclass:'adminstor',
+              nid:nid,
+              isDecry:isDecry
+           },
+           success:function(reponse){
+              if(reponse.status)
+              {
+                 $(".showpwds").html(reponse.pwd); 
+                 isDecry ? ($(".showpwd").html('加密密码'),$(".showpwd").addClass('jmsucess')) : ($(".showpwd").html('解密密码'),$(".showpwd").removeClass('jmsucess'))
+              }
+           },
+           error:function(err){
+              alert('操作失败！');
+           } 
+        });
+        event.stopPropagation();
+        event.preventDefault();
+        return false;
+    });
+ })
+</script>
+<div class="adtop">
+  <span class="adtitle">后台管理系统</span>
+  <p class="adtext">欢迎 Tim 进入管理,<a href="/admin/logout">退出</a></p>
+</div>
+<div class="adleft">
+  <ul class="mainManagement">
+     <li>
+         <a href="" class="fl">导航管理</a>
+         <a href="/admin/index?mod=addNav" class="add">+</a>
+         <% if(viewmessages.contents && viewmessages.contents['leftnavs']) { %>
+         <ul class="listul">
+            <li>
+                <a href="/admin/index?iclass=nav&flg=all" class="<% if(viewmessages.contents['query']['flg'] == "all" ){ %>root<% }%>">全部</a> 
+            </li>
+            <% for(var a=0;a<viewmessages.contents['leftnum'];a++) {%> 
+               <li>
+                  <a href="/admin/index?iclass=nav&flg=<%= viewmessages.contents['leftnavs'][a]['fg'] %>&&nid=<%= viewmessages.contents['leftnavs'][a]['nid'] %>" class="<% if(viewmessages.contents['query']['flg'] == viewmessages.contents['leftnavs'][a]['fg'] ){ %>root<% }%>">
+                    <%= viewmessages.contents['leftnavs'][a]['title'] %></a> 
+               </li>
+            <% } %>
+         </ul>
+         <% } %>
+     </li>
+     <li>
+         <a href="/admin/index?iclass=contents" class="fl">内容管理</a>
+         <ul class="listul">
+            <li>
+               <a href="" class="fl">文章分类</a>
+               <a href="/admin/index?mod=addFenlei" class="add">+</a>
+               <ul class="listul">
+                 <li>
+                    <a href="/admin/index?iclass=contents&list=categories&flg=all">所有分类</a>
+                 </li>
+               </ul>
+            </li>
+            <li>
+               <a href="" class="fl">图片分类</a>
+               <a href="" class="add">+</a>
+               <ul class="listul">
+                 <li>
+                    <a href="">所有分类</a>
+                 </li>
+               </ul>
+            </li> 
+         </ul>
+     </li>
+     <li>
+         <a href="" class="fl">管理员管理</a>
+         <a href="/admin/index?mod=addIstrator" class="add">+</a>
+         <ul class="listul">
+            <li>
+               <a href="/admin/index?iclass=adminstor&flg=all">所有管理员</a>
+            </li> 
+         </ul>
+     </li>
+  </ul>
+</div>
+<div class="adright">
+  <div class="adcontent">
+	  <% if(viewmessages.message.status==200) { %>
+
+      <!--导航控制 start-->
+      <% if(viewmessages.contents['view'] === "addNav") { %>
+          <div class="addForm">
+              <p class="pinfors">权限<em class="blue">（1,2,3）</em>最高管理员权限<em class="blue">3</em>,普通权限<em class="blue">1</em> / 推送是<em class="blue">（3）</em>否<em class="blue">（1）</em> 默认<em class="blue">1</em><a href="/admin/index?iclass=nav&flg=all" class="listbtn">查看列表</a></p>
+              <form action="/admin/index?mod=add" method="post">
+                 <div class="editext">
+                    <label><em>标题：</em><input type="text" name="title" value=""></label>
+                  </div>
+                  <div class="editext">
+                    <label><em>标注字段：</em><input type="text" name="fg" value=""></label>
+                  </div>
+                  <div class="editext">
+                    <label>
+                      <em>推送：</em>
+                      <span><input type="radio" name="recommid"  value="3"/>是</span>
+                      <span><input type="radio" name="recommid" checked value="1"/>否</span>
+                    </label>
+                  </div>
+                  <div class="editext">
+                    <label>
+                      <em>权限：</em>
+                      <select class="allselect" name="access">
+                         <option>1</option>
+                         <option>3</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="editsub">
+                        <input type="submit" value="保存" />
+                  </div>   
+              </form>    
+          </div>    
+      <% }else if(viewmessages.contents['view'] === "listNav") { %>   
+    	   <% if(viewmessages.contents['query']['flg']) { %> 
+             <% if((viewmessages.contents['navs'] && viewmessages.contents['navs'].length>0) || viewmessages.contents['options']['mdata']) { %>
+               <p class="pinfors"><em class="blue">nid</em> 为导航ID号 / 标注字段 (<em class="blue">fg</em>)为指定导航对应标注内容 /   推送字段为 <em class="blue">recommid</em> 标注为3为推送成功<a href="/admin/index?mod=addNav" class="addbtns">新建导航模块</a></p>
+               <table width="100%" border=0 align="center" cellspacing=0 cellpadding=0 class="listables">
+                   <tr>
+                     <th>nid号</th>
+                     <th>标题</th>
+                     <th>标注字段(fg)</th>
+                     <th>推送标注</th>
+                     <th>权限</th>
+                     <th>日期</th>
+                     <th>操作</th>
+                   </tr>
+                 <% if(viewmessages.contents['query']['flg'] == "all") { %>
+                   <% for(var a in viewmessages.contents['navs']){ %>
+                   <tr>
+                     <td>
+                        <%= viewmessages.contents['navs'][a]['nid'] %> 
+                     </td> 
+                     <td>
+                        <%= viewmessages.contents['navs'][a]['title'] %> 
+                     </td>
+                     <td>
+                        <%= viewmessages.contents['navs'][a]['fg'] %> 
+                     </td>
+                     <td>
+                        <%= viewmessages.contents['navs'][a]['recommid'] %> 
+                     </td>
+                     <td>
+                        <%= viewmessages.contents['navs'][a]['access'] %> 
+                     </td>
+                     <td>
+                        <script type="text/javascript">
+                            var dates = new Date('<%= viewmessages.contents['navs'][a]['date'] %>');
+                            document.write(dates.toLocaleString());
+                        </script>
+                     </td>
+                     <td class="opbtns">
+                         <a href="/admin/index?iclass=nav&options=edit&nid=<%= viewmessages.contents['navs'][a]['nid'] %>">编辑</a>
+                         <% if(viewmessages.contents['navs'][a]['recommid']!=3) { %>
+                            <a href="/admin/index?iclass=nav&options=recommid&recomed=1&nid=<%= viewmessages.contents['navs'][a]['nid'] %>">推送</a>
+                         <% }else{ %>
+                            <a href="/admin/index?iclass=nav&options=recommid&recomed=0&nid=<%= viewmessages.contents['navs'][a]['nid'] %>">取消推送</a>
+                         <% } %>
+                         <a href="/admin/index?iclass=nav&options=delete&nid=<%= viewmessages.contents['navs'][a]['nid'] %>">删除</a>
+                     </td>
+                   </tr>
+                   <% } %>
+                 <% }else if(viewmessages.contents['options']['mdata']) { %>
+                    <tr>
+                     <td>
+                        <%= viewmessages.contents['options']['mdata'][0]['nid'] %> 
+                     </td> 
+                     <td>
+                        <%= viewmessages.contents['options']['mdata'][0]['title'] %> 
+                     </td>
+                     <td>
+                        <%= viewmessages.contents['options']['mdata'][0]['fg'] %> 
+                     </td>
+                     <td>
+                        <%= viewmessages.contents['options']['mdata'][0]['recommid'] %> 
+                     </td>
+                     <td>
+                        <%= viewmessages.contents['options']['mdata'][0]['access'] %> 
+                     </td>
+                     <td>
+                        <script type="text/javascript">
+                            var dates = new Date('<%= viewmessages.contents['options']['mdata'][0]['date'] %>');
+                            document.write(dates.toLocaleString());
+                        </script>
+                     </td>
+                     <td class="opbtns">
+                         <a href="/admin/index?iclass=nav&options=edit&nid=<%= viewmessages.contents['options']['mdata'][0]['nid'] %>">编辑</a>
+                         <% if(viewmessages.contents['options']['mdata'][0]['recommid']!=3) { %>
+                            <a href="/admin/index?iclass=nav&flg=<%= viewmessages.contents['options']['mdata'][0]['fg'] %>&&options=recommid&recomed=1&nid=<%= viewmessages.contents['options']['mdata'][0]['nid'] %>">推送</a>
+                         <% }else{ %>
+                            <a href="/admin/index?iclass=nav&flg=<%= viewmessages.contents['options']['mdata'][0]['fg'] %>&&options=recommid&recomed=0&nid=<%= viewmessages.contents['options']['mdata'][0]['nid'] %>">取消推送</a>
+                         <% } %>
+                         <a href="/admin/index?iclass=nav&options=delete&nid=<%= viewmessages.contents['options']['mdata'][0]['nid'] %>">删除</a>
+                     </td>
+                   </tr> 
+                 <% } %>
+               </table>
+               <% if(viewmessages.contents['query']['flg'] == "all") { %>
+                   <% include page %>
+               <% } %>
+             <% }else { %>
+                <% if(viewmessages.message['msg']) { %>
+                   <p><%= viewmessages.message['msg'] %>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin/index?mod=add" class="add" style="color:#3E81B8;">请点击添加</a></p>
+                <% } %>
+             <% } %>  
+         <% } %>
+      <% } %>
+      <!--导航控制 end-->
+       
+      <!--内容管理 start-->
+      <% if(viewmessages.contents['view']==="contents") { %>
+         <% if(viewmessages.contents['query']['flg']==="all") { %>
+           <!--列表展示 start-->
+           <% if(viewmessages.contents['listview']==="categories") { %>
+             <% if(viewmessages.contents['categories'].length<=0) { %>
+                <p class="pinfors"><em class="blue">该分类下还没有分类模块请点击</em>&nbsp;&nbsp;<a href="/admin/index?mod=addFenlei" class="addbtns">新建分类模块</a></p>
+             <% }else { %>
+                <p class="pinfors"><em class="blue">cid</em> 为分类ID号 / 标注字段 (<em class="blue">cateid</em>)为指定模块对应id /   推送字段为 <em class="blue">catecommid</em> 标注为3为推送模块<a href="/admin/index?mod=addFenlei" class="addbtns">新建分类模块</a></p>
+                <table width="100%" border=0 align="center" cellspacing=0 cellpadding=0 class="listables">
+                     <tr>
+                       <th>cid号</th>
+                       <th>cateid号</th>
+                       <th>catecommid号</th>
+                       <th>标题</th>
+                       <th>权限</th>
+                       <th>日期</th>
+                       <th>操作</th>
+                     </tr>
+                  <% for(var c in viewmessages.contents['categories']) { %>   
+                     <tr>
+                       <td><%= viewmessages.contents['categories'][c]['cid'] %></td>
+                       <td><%= viewmessages.contents['categories'][c]['cateid'] %></td>
+                       <td><%= viewmessages.contents['categories'][c]['catecommid'] %></td>
+                       <td class="opbtns"><a href="/admin/index?iclass=contents&list=articles&flg=all&cateid=<%= viewmessages.contents['categories'][c]['cateid'] %>"><%= viewmessages.contents['categories'][c]['title'] %></a></td>
+                       <td><%= viewmessages.contents['categories'][c]['access'] %></td>
+                       <td>
+                          <script>
+                                document.write(new Date('<%= viewmessages.contents['categories'][c]['date'] %>').toLocaleString());
+                          </script>
+                       </td>
+                       <td class="opbtns">
+                          <a href="/admin/index?iclass=contents&list=categories&options=edit&nid=<%= viewmessages.contents['categories'][c]['cid'] %>">编辑</a>
+                          <a href="/admin/index?iclass=contents&list=categories&options=delete&nid=<%= viewmessages.contents['categories'][c]['cid'] %>">删除</a>
+                       </td>
+                     </tr>
+                  <% } %>   
+                </table>
+                <% if(viewmessages.contents['query']['flg'] == "all") { %>
+                   <% include page %>
+                <% } %> 
+             <% } %>       
+           <% }else if(viewmessages.contents['listview']==="articles") { %>
+              <% if(viewmessages.contents['articles'].length<=0) { %>
+                   <p class="pinfors"><em class="blue">该分类下还没有文章请点击</em>&nbsp;&nbsp;<a href="/admin/index?mod=addArticle&cateid=<%= viewmessages.contents['options']['cateid'] %>" class="addbtns">新建文章</a></p>
+              <% }else { %>
+                <p class="pinfors"><em class="blue">id</em> 为文章ID号  /   推送字段为 <em class="blue">recommid</em> 标注为3为推送模块<a href="/admin/index?mod=addArticle&cateid=<%= viewmessages.contents['options']['cateid'] %>" class="addbtns">新建文章</a></p>
+                <table width="100%" border=0 align="center" cellspacing=0 cellpadding=0 class="listables">
+                     <tr>
+                       <th>aid号</th>
+                       <th>recommid号</th>
+                       <th>标题</th>
+                       <th>所属分类</th>
+                       <th>权限</th>
+                       <th>日期</th>
+                       <th>操作</th>
+                     </tr>
+                  <% for(var c in viewmessages.contents['articles']) { %>   
+                     <tr>
+                       <td><%= viewmessages.contents['articles'][c]['aid'] %></td>
+                       <td><%= viewmessages.contents['articles'][c]['recommid'] %></td>
+                       <td><%= viewmessages.contents['articles'][c]['title'] %></td>
+                       <td><%= viewmessages.contents['articles'][c]['cateid'] %></td>
+                       <td><%= viewmessages.contents['articles'][c]['access'] %></td>
+                       <td>
+                          <script>
+                                document.write(new Date('<%= viewmessages.contents['articles'][c]['date'] %>').toLocaleString());
+                          </script>
+                       </td>
+                       <td class="opbtns">
+                          <a href="/admin/index?iclass=contents&list=articles&options=edit&cateid=<%= viewmessages.contents['articles'][c]['cateid'] %>&nid=<%= viewmessages.contents['articles'][c]['aid'] %>">编辑</a>
+                          <a href="/admin/index?iclass=contents&list=articles&options=delete&cateid=<%= viewmessages.contents['articles'][c]['cateid'] %>&nid=<%= viewmessages.contents['articles'][c]['aid'] %>">删除</a>
+                       </td>
+                     </tr>
+                  <% } %>   
+                </table>
+                <% if(viewmessages.contents['query']['flg'] == "all") { %>
+                   <% include page %>
+               <% } %> 
+              <% } %>
+           <% } %>
+           <!--列表展示 end-->
+         <% } %>
+
+         <!--分类添加功能 start--> 
+         <% if(viewmessages.contents['subview']==="addFenlei"){ %> 
+            <form action="/admin/index?mod=addcate" method="post">
+               <div class="addForm">
+                  <p class="pinfors"><em class="blue">标题</em> 为分类标题 / 标注字段 (<em class="blue">分类id</em>)为指定模块对应分类id（位数字） /   推送字段为 <em class="blue">catecommid</em> 标注为3为推送模块,默认不推送为1<a href="/admin/index?iclass=contents&list=categories&flg=all" class="listbtn">查看列表</a></p>
+                  <div class="editext">
+                    <label><em>标题：</em><input type="text" name="title" value=""></label>
+                  </div>
+                  <div class="editext">
+                    <label><em>分类cid：</em><input type="text" name="cateid" value=""></label>
+                  </div>
+                  <div class="editext">
+                    <label>
+                      <em>推送：</em>
+                      <select class="allselect" name="catecommid">
+                         <option>1</option>
+                         <option>3</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="editext">
+                    <label>
+                      <em>权限：</em>
+                      <select class="allselect" name="access">
+                         <option>1</option>
+                         <option>3</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="editsub">
+                        <input type="submit" value="保存" />
+                  </div>  
+               </div> 
+            </form>
+         <% } %>
+         <!--分类添加功能 end-->
+         <% if(viewmessages.contents['subview']==="addArticle"){ %>
+            <form action="/admin/index?mod=addarticle" method="post" enctype='multipart/form-data'>
+               <div class="addForm">
+                  <p class="pinfors"><em class="blue">标题</em> 为分类标题 / 标注字段 (<em class="blue">分类id</em>)为指定模块对应分类id（位数字） /   推送字段为 <em class="blue">catecommid</em> 标注为3为推送模块,默认不推送为1 <a href="/admin/index?iclass=contents&list=articles&flg=all" class="listbtn">查看列表</a></p>
+                  <div class="editext">
+                    <label><em>所属分类cateid号：</em><input type="text" value="<%= (viewmessages.contents['selectdata'].length>0 ? viewmessages.contents['selectdata'][0]['cateid'] : '') %>" disabled class="disabledcss">
+                    <input type="hidden" name="cateid" value="<%= (viewmessages.contents['selectdata'].length>0 ? viewmessages.contents['selectdata'][0]['cateid'] : '') %>" ></label>
+                  </div>
+                  <div class="editext">
+                    <label><em>分类标题：</em><input type="text" value="<%= (viewmessages.contents['selectdata'].length>0 ? viewmessages.contents['selectdata'][0]['title'] : '') %>" disabled class="disabledcss">
+                    <input type="hidden" name="catetitle" value="<%= (viewmessages.contents['selectdata'].length>0 ? viewmessages.contents['selectdata'][0]['title'] : '') %>"></label>
+                  </div>
+                  <div class="editext">
+                    <label><em>所属分类推送否：</em><input type="text" value="<%= (viewmessages.contents['selectdata'].length>0 ? viewmessages.contents['selectdata'][0]['catecommid'] : '') %>" disabled class="disabledcss">
+                    <input type="hidden" name="catecommid" value="<%= (viewmessages.contents['selectdata'].length>0 ? viewmessages.contents['selectdata'][0]['catecommid'] : '') %>"></label>
+                  </div>
+                  <div class="editext">
+                    <label><em>文章标题：</em><input type="text" name="title" value=""></label>
+                  </div>
+                  <div class="editext">
+                    <label>
+                      <em>文章推送：</em>
+                      <select class="allselect" name="recommid">
+                         <option>1</option>
+                         <option>3</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="editext">
+                    <label><em>文章内容：</em></label>
+                    <label><textarea name="content" class="textareacontent"></textarea></label>
+                  </div>
+                  <div class="editext">
+                    <label><em>上传图片：</em></label>
+                    <label><input type="file" name="uploadimg"  class="uptext"/></label>
+                  </div>
+                  <div class="editext">
+                    <label>
+                      <em>权限：</em>
+                      <select class="allselect" name="access">
+                         <option>1</option>
+                         <option>3</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="editsub">
+                        <input type="submit" value="保存" />
+                  </div>  
+               </div> 
+            </form>
+         <% } %>
+         <!--文章添加功能 start-->
+
+         <!--文章添加功能 end--> 
+      <% } %>  
+      <!--内容管理 end-->
+       
+      <!--管理员操作 start-->
+      <% if(viewmessages.contents['view']==="addIstrator"){ %>
+          <div class="addForm">
+              <p class="pinfors">权限<em class="blue">（1,2,3）</em>最高管理员权限<em class="blue">3</em>,普通权限<em class="blue">1</em></p>
+              <form action="/admin/index?mod=addmintor" method="post">
+                 <div class="editext">
+                    <label><em>管理员名字：</em><input type="text" name="name" value=""></label>
+                  </div>
+                  <div class="editext">
+                    <label><em>密码：</em><input type="password" name="password" value="" autocomplete="off"></label>
+                  </div>
+                  <div class="editext">
+                    <label>
+                      <em>权限：</em>
+                      <select class="allselect" name="access">
+                         <option>1</option>
+                         <option>3</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="editsub">
+                        <input type="submit" value="保存" />
+                  </div>   
+              </form>    
+          </div>    
+      <% }else if(viewmessages.contents['view']==="alladminstor") { %>
+          <% if(viewmessages.contents['query']['flg']) { %>
+             <% if(viewmessages.contents['alladminstors'].length>0) { %>
+                <table width="100%" border=0 align="center" cellspacing=0 cellpadding=0 class="listables">
+                    <tr>
+                      <th>amid号</th>
+                      <th>名字</th>
+                      <th>密码</th>
+                      <th>权限</th>
+                      <th>日期</th>
+                      <th>操作</th>
+                    </tr>
+                    <% for(var a=0;a<viewmessages.contents['alladminstors'].length;a++) { %>
+                       <tr>
+                          <td><%= viewmessages.contents['alladminstors'][a]['amid'] %></td>
+                          <td><%= viewmessages.contents['alladminstors'][a]['name'] %></td>
+                          <td class="showpwds"><%= viewmessages.contents['alladminstors'][a]['password'] %></td>
+                          <td><%= viewmessages.contents['alladminstors'][a]['access'] %></td>
+                          <td>
+                            <script>
+                                document.write(new Date('<%= viewmessages.contents['alladminstors'][a]['date'] %>').toLocaleString());
+                            </script>
+                          </td>
+                          <td class="opbtns">
+                            <a href="/admin/index?iclass=adminstor&options=edit&nid=<%= viewmessages.contents['alladminstors'][a]['amid'] %>">编辑</a>
+                            <a href="" class="showpwd" data-id="<%= viewmessages.contents['alladminstors'][a]['amid'] %>">解密密码</a>
+                            <a href="/admin/index?iclass=adminstor&options=delete&nid=<%= viewmessages.contents['alladminstors'][a]['amid'] %>">删除</a>
+                          </td>
+                       </tr>
+                    <% } %>
+                </table>
+                <% if(viewmessages.contents['query']['flg'] == "all") { %>
+                   <% include page %>
+                <% } %>
+             <% } %>
+          <% } %>
+      <% } %>
+      <!--管理员操作 end-->
+
+      <!--所有编辑操作 start-->
+      <% if(viewmessages.contents['options']) { %>
+          <% if(viewmessages.contents['options']['view']=='edit'){ %>
+             <form action="/admin/index?iclass=<%= (viewmessages.contents['view'] === "listNav" ? 'nav' : (viewmessages.contents['view'] === "alladminstor" ? 'adminstor' : (viewmessages.contents['view']=="contents"&&viewmessages.contents['listview']) ? viewmessages.contents['listview'] : '')) %>&mod=edit" method="post" >
+                <% if(viewmessages.contents['view'] === "listNav") { %>
+                  <div class="editext">
+                    <label><em>nid号：</em><input type="text" value="<%= viewmessages.contents['options']['mdata'][0]['nid'] %>" disabled class="disabledcss">
+                    <input type="hidden" name="nid" value="<%= viewmessages.contents['options']['mdata'][0]['nid'] %>" ></label>
+                  </div>
+                  <div class="editext">
+                    <label><em>标题：</em><input type="text" name="title" value="<%= viewmessages.contents['options']['mdata'][0]['title'] %>"></label>
+                  </div>
+                  <div class="editext">
+                    <label><em>标注字段：</em><input type="text" name="fg" value="<%= viewmessages.contents['options']['mdata'][0]['fg'] %>"></label>
+                  </div>
+                <% }else if(viewmessages.contents['view']==="alladminstor") {%>
+                   <div class="editext">
+                      <label><em>amid号：</em><input type="text" value="<%= viewmessages.contents['options']['mdata'][0]['amid'] %>" disabled class="disabledcss">
+                      <input type="hidden" name="amid" value="<%= viewmessages.contents['options']['mdata'][0]['amid'] %>" ></label>
+                   </div> 
+                   <div class="editext">
+                      <label><em>管理员名字：</em><input type="text" name="name" value="<%= viewmessages.contents['options']['mdata'][0]['name'] %>"></label>
+                   </div> 
+                   <div class="editext">
+                      <label><em>密码：</em><input type="password" name="password" value="<%= viewmessages.contents['options']['mdata'][0]['password'] %>"></label>
+                   </div>
+                <% }else if(viewmessages.contents['listview'] === "categories") { %>
+                   <div class="editext">
+                      <label><em>cid号：</em><input type="text" value="<%= viewmessages.contents['options']['mdata'][0]['cid'] %>" disabled class="disabledcss">
+                      <input type="hidden" name="cid" value="<%= viewmessages.contents['options']['mdata'][0]['cid'] %>" ></label>
+                   </div>
+                   <div class="editext">
+                      <label><em>cateid号：</em><input type="text" value="<%= viewmessages.contents['options']['mdata'][0]['cateid'] %>" disabled class="disabledcss">
+                      <input type="hidden" name="cateid" value="<%= viewmessages.contents['options']['mdata'][0]['cateid'] %>" ></label>
+                   </div>
+                   <div class="editext">
+                      <label>
+                        <em>catecommid号：</em>
+                        <input type="text" value="<%= viewmessages.contents['options']['mdata'][0]['catecommid'] %>" name="catecommid" >
+                      </label>
+                   </div>
+                   <div class="editext">
+                      <label><em>标题：</em><input type="text" name="title" value="<%= viewmessages.contents['options']['mdata'][0]['title'] %>"></label>
+                   </div> 
+                <% }else if(viewmessages.contents['listview'] === "articles") { %>
+                   <div class="editext">
+                      <label><em>aid号：</em><input type="text" value="<%= viewmessages.contents['options']['mdata'][0]['aid'] %>" disabled class="disabledcss">
+                      <input type="hidden" name="aid" value="<%= viewmessages.contents['options']['mdata'][0]['aid'] %>" >
+                      <input type="hidden" name="cateid" value="<%= viewmessages.contents['options']['mdata'][0]['cateid'] %>" ></label>
+                   </div>
+                   <div class="editext">
+                      <label><em>标题：</em><input type="text" name="title" value="<%= viewmessages.contents['options']['mdata'][0]['title'] %>"></label>
+                   </div> 
+                   <div class="editext">
+                      <!--<label><em>recommid号：</em><input type="text" value="<%= viewmessages.contents['options']['mdata'][0]['recommid'] %>" disabled class="disabledcss">
+                      <input type="hidden" name="recommid" value="<%= viewmessages.contents['options']['mdata'][0]['recommid'] %>" ></label>
+                      <label>-->
+                      <label>
+                         <em>recommid：</em>
+                      </label>
+                      <select class="allselect" name="recommid" value="<%= viewmessages.contents['options']['mdata'][0]['recommid'] %>">
+                         <option <% if(viewmessages.contents['options']['mdata'][0]['recommid'] == 1){ %> selected="true" <% } %> >1</option>
+                         <option <% if(viewmessages.contents['options']['mdata'][0]['recommid'] == 3){ %> selected="true" <% } %> >3</option>
+                      </select>
+                   </label>
+                   </div>
+                   <div class="editext">
+                      <label>
+                         <em>内容：</em>
+                      </label>
+                      <label>
+                        <textarea name="content" class="textareacontent">
+                           <%= viewmessages.contents['options']['mdata'][0]['content'] %>
+                        </textarea>
+                      </label>
+                   </div>
+                <% } %>
+                <div class="editext">
+                    <label>
+                      <em>权限：</em>
+                      <select class="allselect" name="access" value="<%= viewmessages.contents['options']['mdata'][0]['access'] %>">
+                         <option <% if(viewmessages.contents['options']['mdata'][0]['access'] == 1){ %> selected="true" <% } %> >1</option>
+                         <option <% if(viewmessages.contents['options']['mdata'][0]['access'] == 3){ %> selected="true" <% } %> >3</option>
+                      </select>
+                    </label>
+                 </div>
+                <div class="editsub">
+                      <input type="submit" value="保存" />
+                </div>
+             </form>
+          <% } %>
+      <% } %> 
+      <!--所有编辑操作 end-->
+
+      <!--进入管理提示-->
+      <% if(viewmessages.contents['view'] === "display") {%>
+         <p class="welcomtext">欢迎加入管理！</p>
+      <% } %> 
+      <!--进入管理提示 end-->
+
+	  <% }else{ %>
+        <!--错误提示-->
+        <%= viewmessages.message['msg'] %>  
+    <% } %>
+  </div>
+</div>
+<form action="/admin/index" method="post" enctype='multipart/form-data'>
+      <input type="text" name="text" />
+      <input type="file" name="files" />
+      <input type="submit" name="submit" value="tj">
+</form>
+
+
+ 
+

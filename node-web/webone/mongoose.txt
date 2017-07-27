@@ -1,0 +1,59 @@
+﻿/*
+ 
+  问题：1、如果我在启动了mongo的认证下,如果越过admin数据库权限去链接其他的数据库，并进行操作
+
+*/
+
+mongoose 操作
+
+  mongoose是一款以mongo为基础的模块型工具，提高了对mongo的数据存储，插入，删除等操作功能的提深
+
+  mongoose 理解为schema model obj
+  schema->为一款定义了文件存储模型的类型，并没有数据库操作能力
+  model->在定义了schema基础下,将文件存储定义转换为模块下，对数据库进行相应的操作
+  obj->实例化model下
+
+  schema定义的表中的类型{String,Number,Boolean,Array,ObjectId,Mixed,Date,Buffter}
+  定义模式为：
+  new Schema({
+	  name:String,
+	  date:Date   /{type:Date,default:Date.now}
+  });
+ 
+  在定义了schema后实例化模块model，由于model生成的表会为复数，所以，我们如果想定义为自己的命名的表需要在定义schema
+  的时候设置第三个参数{connection:collection}或者在model的第三个参数是设置表名
+
+
+我们对数据库的操作可以在实例化对象下，或者在model下通过方法去操作
+
+实例化下操作存储通过save方法参数为存储的内容写入定义model时，后为回调的函数，防止有错误
+
+model下操作插入数据库调用model下方法create方法，参数为插入内容对象，回调方法为查看错误
+
+exp:
+
+插入
+
+obj方法
+obj.save(function(err){
+   console.log(err);
+}) 
+
+model 
+user.create({
+   name:'tim',
+   password:"tim",
+   access:3
+},function(err,small){
+	console.log(err);
+	console.log(small);
+});
+
+
+查找方法
+
+model
+参数一为查询条件
+user.find({}).exec(function(err,docs){
+
+});
