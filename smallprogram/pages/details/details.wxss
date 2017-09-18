@@ -1,0 +1,60 @@
+/*detail.wxss*/
+@import "../modules/tabbar.wxss"; /*tabbar 底部导航*/
+page{
+   background:#efeff4;
+   display: block;
+   min-height:100%;
+   font-family:PingFangSC-Regular;
+}
+.wrap{
+  position:relative;
+}
+.detailwrap{
+  padding:30rpx;
+}
+.toptitle{
+  font-family:PingFangSC-Regular;
+  font-size:48rpx;
+  color:#000000;
+  letter-spacing:0px;
+  display:block;
+  margin-top:40rpx;
+}
+.subtitles,.simg{
+  display:block;
+}
+.text1{
+  font-family:PingFangSC-Regular;
+  font-size:30rpx;
+  color:#576b95;
+  text-align:left;
+}
+.text2{
+  font-family:PingFangSC-Regular;
+  font-size:30rpx;
+  color:#888888;
+  text-align:left;
+}
+.simg{
+  text-align:left;
+  margin-top:70rpx;
+}
+.subtitles{
+  margin-top:20rpx;
+}
+.ctext{
+  font-family:PingFangSC-Regular;
+  font-size:34rpx;
+  color:#111111;
+  letter-spacing:0px;
+  line-height:50rpx;
+  vertical-align:text-top;
+  margin-top:-10rpx;
+}
+.knowledgemapbtn{
+  padding:60rpx 0 30rpx 0;
+  display:block;
+  width:666rpx;
+  height:90rpx;
+  margin:0 auto;
+}

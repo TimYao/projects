@@ -1,0 +1,19 @@
+<!--recommend.wxml-->
+<include src="../modules/toptab.wxml"/>
+<view class="wrap" style="height:{{maxh}};">
+    <scroll-view scroll-y="true" style="height:{{maxh}};"  bindscrolltolower="scrollTolower">
+        <swiper indicator-dots="{{indicatorDots}}"  interval="{{interval}}" duration="{{duration}}" current="{{current}}" class="swipertablist" style="height:{{h}}" bindchange="touchchange">
+                <block wx:for="{{tabContent.contentlist}}" wx:for-item="simpledata" wx:key="simplekey">
+                    <swiper-item>
+                        <include src="../modules/knowledgemap.wxml"/>
+                        <include src="../modules/knowledgefeatured.wxml"/>
+                    </swiper-item>
+                </block>
+        </swiper>
+        <view class="{{isLoading==='undefined' ? 'hide' : ''}} laddingh">
+            <include src="../modules/loading.wxml"/>
+        </view>
+    </scroll-view>
+</view>
+<include src="../modules/tabbar.wxml"/>
+

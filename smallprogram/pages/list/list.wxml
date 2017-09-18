@@ -1,0 +1,9 @@
+<!--search.wxml-->
+<view class="wrap">
+   <scroll-view scroll-y="true" style="height:{{maxh}}">
+        <block wx:for="{{tabContent.contentlist}}" wx:for-item="simpledata" wx:key="simplekey">
+                <include src="../modules/knowledgefeatured.wxml"/>
+        </block>
+   </scroll-view>    
+</view>
+<!--<include src="../modules/tabbar.wxml"/>-->

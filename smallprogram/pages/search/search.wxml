@@ -1,0 +1,14 @@
+<!--search.wxml-->
+<view class="wrap">
+   <scroll-view scroll-y="true" style="height:{{maxh}}">
+        <view class="cwrap"> 
+            <block>
+                <include src="../modules/search.wxml" />
+            </block>
+            <block wx:if="{{isShow}}">
+                <include src="../modules/searchresult.wxml" />
+            </block>
+        </view>
+   </scroll-view>
+</view>
+<include src="../modules/tabbar.wxml"/>

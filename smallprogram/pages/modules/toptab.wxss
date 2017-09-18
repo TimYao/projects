@@ -1,0 +1,21 @@
+/**toptab.wxss**/
+
+.tabwrap{
+   display:block;
+   box-shadow:inset 0px -1px 0px 0px #e5e5e5;
+   background:#fafafa;
+   position:relative;
+   box-sizing:border-box;
+}
+.recommend-item{
+   display:inline-block;
+   width:50%;
+   font-size:28rpx;
+   text-align:center;
+   line-height:94rpx; 
+   vertical-align:middle;
+}
+.recommend-root{
+  border-bottom:6rpx solid #1aad19 !important;
+  color:#1aad19;
+}

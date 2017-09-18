@@ -1,0 +1,8 @@
+<block wx:for="{{searchContent}}" wx:for-item="simpledata" wx:key="simplekey">
+    <text class="kntitle">技术图谱</text>
+    <block>
+        <include src="../modules/knowledgemap.wxml"/>
+    </block>
+    <include src="../modules/knowledgefeatured.wxml"/>
+</block>
+

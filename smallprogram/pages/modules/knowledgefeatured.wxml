@@ -1,0 +1,11 @@
+<!--modules knowledgefeatured.wxml-->
+<view class="listwrap bk" wx:if="{{simpledata.knowledgefeatured}}">
+    <view class="ulist01">
+        <view class="uli1" wx:for="{{simpledata.knowledgefeatured}}" data-model="3" wx:for-item="item" wx:for-index="index" wx:key="itemkey" data-href="{{item.href}}" data-title="{{item.title}}" data-id="{{item.id}}" data-classi="{{item.classi}}" bindtap="linkContent">
+            <span class="span-text0">
+                <text class="item-title">{{item.title}}{{index}}</text>
+                <text class="item-number">{{item.subtitle}} | {{item.pernum}}人收藏</text>
+            </span>
+        </view>
+    </view>
+</view>

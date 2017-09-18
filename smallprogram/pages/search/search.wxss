@@ -1,0 +1,27 @@
+@import "../modules/tabbar.wxss"; /*tabbar 底部导航*/
+@import "../modules/loading.wxss"; /*loading*/
+@import "../modules/knowledgemap.wxss";  /*knowledgemap*/
+@import "../modules/knowledgefeatured.wxss";  /*knowledgefeatured*/
+@import "../modules/search.wxss";  /*search*/
+
+page{
+   background:#efeff4;
+   display: block;
+   min-height:100%;
+   font-family:PingFangSC-Regular;
+}
+.wrap{
+  position:relative;
+}
+.kntitle{
+  font-size:28rpx;
+  color:#888888;
+  padding:0 30rpx;
+  margin-top:30rpx;
+  margin-bottom:27rpx;
+  display:inline-block;
+}
+.laddingh{
+  height:40rpx; 
+  padding:32rpx 0;
+}

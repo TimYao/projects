@@ -1,0 +1,34 @@
+/**knowledgemap.wxss**/
+.uli0{
+  width:100%;
+  height:200rpx;
+}
+.ali{
+  display:block;
+  padding:30rpx;
+  background:#fff;
+  border-bottom:10rpx solid #efeff4;
+}
+.uli0 .span-pic{
+  width:120rpx;
+  height:120rpx;
+  text-align:center;
+}
+.span-pic image{
+  vertical-align:bottom;
+}
+.span-text{
+   margin-left:20rpx;
+   vertical-align:top;
+   width:538rpx;
+}
+.item-title{
+  font-size:34rpx;
+  color:#222222;
+}
+.item-number{
+  font-size:26rpx;
+  color:#999999;
+  display:block;
+  margin-top:20px;
+}

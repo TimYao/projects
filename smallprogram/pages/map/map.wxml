@@ -1,0 +1,27 @@
+<!--map.wxml-->
+<view class="wrap">
+  <block wx:if="{{model==='undefined'}}">
+     <scroll-view scroll-y="true" style="height:{{maxh}}" bindscrolltolower="scrollTolower">
+        <!--存在图谱列表-->
+        <block wx:if="{{tabContent.contentlist[0].knowledgemap.length>0 && model==='undefined'}}"> 
+                <block wx:for="{{tabContent.contentlist}}" wx:for-item="simpledata" wx:key="simplekey">
+                    <include src="../modules/knowledgemap.wxml"/>
+                </block>
+                <view class="{{isLoading==='undefined' ? 'hide' : ''}} laddingh">
+                    <include src="../modules/loading.wxml"/>
+                </view>
+        </block>
+     </scroll-view> 
+  </block>
+  <view class="knowledgemapwrap" wx:if="{{tabContent.contentlist[0].knowledgemap.length<=0 && model===-1}}">
+        <span class="mapstructimg"><image src="../../images/nostruct.png" style="width:250rpx;height:221rpx;" background-size:cover></image></span>
+        <span class="mapstructtext"><text>用知识图谱来管理个人的知识吧</text></span>
+        <span class="knowledgemapbtn"><button type="primary" size="20"  bindtap="primary">GET知识图谱</button></span> 
+  </view>
+  <view class="knowledgemapwrap" wx:if="{{myKnowldegemap && model===1}}">
+       <include src="../modules/structmap.wxml"/>
+   </view> 
+</view>
+<block wx:if="{{myKnowldegemap && model!=1}}">
+   <include src="../modules/tabbar.wxml"/>
+</block>  

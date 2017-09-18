@@ -1,0 +1,14 @@
+<!--modules recommend.wxml-->
+<view class="listwrap" wx:if="{{simpledata.knowledgemap}}">
+    <ul class="ulist">
+        <li class="uli0" wx:for="{{simpledata.knowledgemap}}" wx:for-item="item" wx:for-index="index" wx:key="itemkey">
+            <a href="" class="clearfix ali" data-model="1" data-href="{{item.href}}" data-id="{{item.id}}" data-title="{{item.title}}" data-classi="{{item.classi}}"  bindtap="linkContent">
+                <span class="pull-left span-pic"><image src="{{item.pic}}" style="width:120rpx;height:120rpx;"></image></span> 
+                <span class="pull-left span-text">
+                    <text class="item-title">{{item.title}}{{index}}</text>
+                    <text class="item-number">{{item.pernum}}人GET | {{item.knnum}}条知识</text>
+                </span>
+            </a>
+        </li> 
+    </ul>
+</view> 

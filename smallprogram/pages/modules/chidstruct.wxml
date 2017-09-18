@@ -1,0 +1,12 @@
+<!--chidstruct.wxml    -->
+
+<ul class="childurl" wx:if="{{childom.child}}">
+    <li wx:for="{{childom.child}}" wx:for-item="childom" wx:key="skey">
+        <span class="sline"></span>
+        <text class="title" data-id="{{childom.id}}" data-title="{{childom.title}}" data-href="{{childom.href}}" data-titles="{{childom.titles}}" data-model="2" bindtap="linkContent">{{childom.title}}</text>
+        <block wx:if="{{childom.child}}">
+             <include src="chidstruct1.wxml" />
+        </block>
+    </li>
+</ul>
+

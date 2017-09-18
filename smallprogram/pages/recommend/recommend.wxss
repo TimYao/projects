@@ -1,0 +1,18 @@
+@import "../modules/loading.wxss";    /*loading*/
+@import "../modules/toptab.wxss";    /*toptab*/
+@import "../modules/tabbar.wxss";   /*tabbar*/
+@import "../modules/knowledgemap.wxss";  /*knowledgemap*/
+@import "../modules/knowledgefeatured.wxss";  /*knowledgefeatured*/
+
+page{
+   background:#efeff4;
+   display: block;
+   min-height:100%;
+   position:relative;
+}
+.swipertablist{
+  width:100%;
+  margin-top:10rpx;
+
+}
+

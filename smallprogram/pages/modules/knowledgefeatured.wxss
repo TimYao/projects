@@ -1,0 +1,27 @@
+/**knowledgefeatured.wxss**/
+.ulist01{
+  width:100%;
+}
+.uli1{
+  width:100%;
+  display:block;
+  height:200rpx;
+}
+.span-text0{
+  border-bottom:1rpx solid #e5e5e5;
+  padding:30rpx;
+  width: 657rpx;
+  margin:0 auto;
+  display:block;
+}
+.item-title{
+  font-size:34rpx;
+  color:#222222;
+  display:block;
+}
+.item-number{
+  font-size:26rpx;
+  color:#999999;
+  display:block;
+  margin-top:20px;
+}

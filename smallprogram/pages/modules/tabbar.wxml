@@ -1,0 +1,8 @@
+<!--tabbar.wxml  w标注上添加root生成当前样式   -->
+<view class="tabBottomBar" wx:if="{{tabBottomBar}}">
+     <block wx:for="{{tabBottomBar}}"  wx:for-item="tabarr" wx:for-index="index" class="vblock" wx:key="tabarrkey">
+         <div class="{{tabarr.root}} w {{index==0? 'w01': (index==1?'w02':(index==2?'w03':'')) }}" >
+            <a href="" class="{{index==0?'ame':(index==1?'afeatured':(index==2?'asearch':''))}} btn" bindtap="bindViewTap" data-index="{{index}}"  data-href="{{tabarr.href}}"><i></i>{{tabarr.text}}</a>
+         </div>
+     </block>
+</view>

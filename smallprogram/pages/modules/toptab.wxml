@@ -1,0 +1,6 @@
+<!--toptab.wxml  w标注上添加root生成当前样式   -->
+<view class="tabwrap">
+    <block wx:for="{{tabTitle}}" wx:for-item="item" wx:key="itemkey">
+      <text class="{{item.root}} recommend-item" bindtap="tapSwitch" data-index="{{index}}">{{item.title}}</text>
+    </block>
+</view>

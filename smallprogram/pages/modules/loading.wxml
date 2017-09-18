@@ -1,0 +1,11 @@
+<!--loading.wxml-->
+<view class="body-view">
+    <block class="loadingone">
+       <image src="../../images/loading.png" background-size="contain" class="loading"></image>
+       <text class="loadingtext">加载中…</text>
+    </block>
+    <loading hidden="false" bindchange="loadingChange">
+        加载中...
+    </loading>
+    <!--<button type="default" bindtap="loadingTap">点击弹出loading</button>-->
+</view>

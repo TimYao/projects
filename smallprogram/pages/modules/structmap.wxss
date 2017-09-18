@@ -1,0 +1,78 @@
+/**structmap.wxss**/
+
+/*图谱样式*/
+.knowledgemapwrap{
+  padding:30rpx;
+}
+.mtitle,.mainul .title{
+  display:block;
+  font-family:PingFangSC-Regular;
+  font-size:34rpx;
+  color:#000000;
+}
+.mainul{
+  margin-top:30rpx;
+  display:block;
+}
+.mainul .title{
+  display:inline-block;
+  margin-left:20rpx;
+}
+.mainul li{
+  border-left:1rpx solid #ccc;
+  display:block;
+}
+.sline{
+  border-top:1rpx solid #cccccc;
+  width:59rpx;
+  display:inline-block;
+  vertical-align:bottom;
+}
+.childurl{
+  margin-left:80rpx;
+  display:block;
+  margin-top:30rpx;
+  padding-bottom:30rpx;
+}
+.mainul li{
+  padding:15rpx 0 0 0;
+}
+.mainul text{
+  vertical-align:bottom;
+  position:relative;
+  bottom:-15rpx;
+}
+
+/*无图谱样式*/
+.mapstructimg{
+  text-align:center;
+  display:block;
+  margin-top:50rpx;
+}
+.mapstructtext{
+  text-align:center;
+  display:block;
+  font-family:PingFangSC-Regular;
+  font-size:28rpx;
+  color:#000000;
+  margin-top:30rpx;
+}
+.knowledgemapbtn{
+  font-family:PingFangSC-Regular;
+  color:#ffffff;
+  display:block;
+  text-align:center;
+  margin-top:45rpx;
+}
+.knowledgemapbtn{
+  margin-top:130rpx;
+  display:block;
+}
+.nomap{
+   padding:30rpx;
+}
+.timg{
+  width:47rpx;
+  height:36rpx;
+  float:left;
+}

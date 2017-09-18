@@ -1,0 +1,18 @@
+<!--details.wxml-->
+<view class="wrap">
+   <view class="detailwrap">
+       <text class="toptitle">合乎你天性的生活就是最好的</text>
+       <span class="subtitles">
+           <text class="text1">Java－基础知识－基础知识的基础</text>
+           <text class="text2">｜ 211人收藏</text>
+       </span>
+       <span class="simg">
+          <image src="../../images/test.jpg" style="width:590rpx;height:390rpx;" background-size="cover"></image>
+       </span>
+       <text class="ctext">
+          【大白，卖的一手好萌】一波三折，妙趣横生。悬疑和温情，搞笑与动作，即使拍成真人版也绝对是一部好题材和好故事。大白呆萌可爱一逗比，细节刻画真实有趣，放气如放屁，
+       </text>
+       <span class="knowledgemapbtn"><button type="primary" size="20"  bindtap="linkContent" data-href="../navigator/navigator">收藏至我的图谱</button></span> 
+   </view>
+</view>
+<!--<include src="../modules/tabbar.wxml"/>-->

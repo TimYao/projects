@@ -1,0 +1,11 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/recommend/recommend",
+    "pages/search/search",
+    "pages/map/map",
+    "pages/list/list",
+    "pages/details/details"
+  ]
+}

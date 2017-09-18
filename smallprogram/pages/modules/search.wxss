@@ -1,0 +1,93 @@
+/**search.wxss**/
+.searchwrap{
+  padding:15rpx;
+  border-bottom:1rpx solid rgba(0,0,0,0.10);
+}
+.searchdefalut{
+  background:#ffffff;
+  border:1rpx solid #e6e6ea;
+  border-radius:10rpx;
+  padding:0 16rpx;
+  position:relative;
+}
+.searchinputdefault{
+  margin:0 auto;
+}
+.searchinput{
+  width:610rpx;
+  height:55rpx;
+}
+.searchicon{
+  position:absolute;
+  top:15rpx;
+  left:16rpx;
+}
+.searchput{
+  margin-left:50rpx;
+  width:85%;
+  font-family:PingFangSC-Regular;
+  font-size:26rpx;
+  color:#333333;
+  letter-spacing:0.27rpx;
+  text-align:left;
+}
+.searchinputdefault .searchput{
+  text-align:center;
+}
+.searchinputdefault .searchicon{
+  left:50%;
+  margin-left:-70rpx;  
+}
+.cancelicon{
+  position:absolute;
+  right:16rpx;
+  top:10rpx;
+}
+.canceltext{
+  font-family:PingFangSC-Regular;
+  font-size:32rpx;
+  color:#00c203;
+  margin-top:10rpx;
+  margin-left:10rpx;
+}
+.searchdata{
+  position:absolute;
+  top:80rpx;
+  width:100%;
+  left:0;
+  background:#efeff4;
+}
+.infortext{
+  font-family:PingFangSC-Regular;
+  font-size:28rpx;
+  color:#888888;
+  padding:0 30rpx;
+  margin-top:30rpx;
+  margin-bottom:30rpx;
+  display:inline-block;
+}
+.searchcontent{
+  background:#ffffff;
+  width:100%;
+  min-height:100%;
+  border-top:1rpx solid #e5e5e5;
+  border-bottom:1rpx solid #e5e5e5;
+}
+.simpleview{
+  border-bottom:1rpx solid #e5e5e5;
+  flex-direction:row;
+  width:92%;
+  margin:0 auto;
+}
+.simpletext{
+  display:inline-block;
+  padding:20rpx 0;
+  font-family:PingFangSC-Regular;
+  font-size:34rpx;
+  color:#000000;
+  letter-spacing:0px;
+  text-align:left;
+}
+.searchinputdefault .cancelicon{
+   display:none;
+}

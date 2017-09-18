@@ -1,0 +1,15 @@
+@import "../modules/loading.wxss";    /*loading*/
+@import "../modules/tabbar.wxss"; /*tabbar 底部导航*/
+@import "../modules/knowledgemap.wxss";  /*knowledgemap 图谱列表内容*/
+@import "../modules/structmap.wxss";  /*structmap  图谱详情结构*/
+
+page{
+   background:#efeff4;
+   display: block;
+   min-height:100%;
+   position:relative;
+}
+.wrap{
+  position:relative;
+}
+

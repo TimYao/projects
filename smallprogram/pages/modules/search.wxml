@@ -1,0 +1,21 @@
+<!--search.wxml -->
+<view class="searchwrap clearfix" wx:if="searchModule">
+    <view class="{{!searchModule.searchstatus ? 'searchinputdefault' : 'searchinput pull-left'}} searchdefalut" >
+       <icon type="search" size="13" class="searchicon" />
+       <input type="text" class="searchput"  placeholder-style="color:#b2b2b2" value="{{searchValue}}"    placeholder="搜索" bindfocus = "searchKey"  bindinput="enterKey" focus="{{searchModule.focus}}" />
+       <icon type="clear" size="16" class="{{searchModule.isEnterKey==undefined ? 'hide' : 'show'}} cancelicon" bindtap="cancelEnterKey"/>
+    </view>
+    <text class="{{!searchModule.searchstatus ? 'hide' : ''}} pull-left canceltext" bindtap="cancelEnter">取消</text>
+</view>
+<block wx:if="{{searchModule && searchModule.isLenovo}}">
+    <view class="searchdata">
+    <text class="infortext">搜索范围</text>
+    <view class="searchcontent">
+        <block wx:for="{{searchModule.lecontent}}" wx:for-item="litem" wx:for-index="index" wx:key="skey"> 
+            <view class="{{index===(searchModule.lecontent.length-1)?('noborder'):('t')}} simpleview" bindtap="queryContent" data-type="{{index===(searchModule.lecontent.length-1)?('my'):('recommend')}}">
+                <text class="simpletext">{{searchModule.infortext}}{{litem.text}}</text>
+            </view>
+        </block>
+    </view>
+    </view>
+</block>
